@@ -1,0 +1,60 @@
+
+{% block content %}
+
+<div id="header">
+    <div class="row"> 
+    <!--bouton de connexion-->
+    <div class="col-md-4"></div>
+    <div class="col-md-4 titreAp">
+        <h1 class="mb-2 d-flex justify-content-center" title="Home"><a href="index.php" style="color:red;text-decoration:none;" aria-label="retour vers accueil">News Application</a></h1>
+    </div>
+    <div class="col-md-4 mt-4 d-flex justify-content-center d-flex align-items-center">
+        <div class="row">
+            <!--si un user est connecté alors affiche son nom son prénom et le logout-->
+            {% if app.user %}
+            <div class="row">
+                <div class="row">
+                    <img style="width:80px;border-radius:40px;" src="{{asset('/images/'~ app.user.avatar) }}">
+                    <div class="col-md-8"><span>Bonjour {{ app.user.firstName }} {{ app.user.lastName }} !</span></div>
+                </div>
+                <div class="row">
+                        <div class="col-md-6 d-flex justify-content-center" title="se déconnecter"><a href="{{ path('app_logout') }}"><i class="fa-solid fa-right-from-bracket fa-xl"></i></a></div>
+                        <!--si le user à un role editor,admin ou super admin alors affiche son avatar et le lien vers le dashboard-->
+                        {% if is_granted('ROLE_EDITOR') in app.user.roles %}
+                        <div class="col-md-6 d-flex justify-content-center" title="vers dashboard"><a href="{{ path('admin') }}"><i class="fa-solid fa-gear fa-xl"></i></a></div>
+                    </div>
+                        {% endif %}
+            </div>
+            {% else %}
+                <a href="{{ path('app_login') }}"><i class="fa-solid fa-user-circle fa-xl m-2" style="color: blue" title="s'identifier" arai-label="s'identifier"></i></a>
+            {% endif %}
+        </div>
+    </div>   
+    </div>
+    <!--navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light ">
+        <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarTogglerDemo01">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link fs-5" href="index.php" title="Home" aria-label="lien vers accueil">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-5" href="index.php?action=showAllSportNews" title="Sports" aria-label="lien vers sport">Sport</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-5" href="index.php?action=showAllCuisineNews" title="Cuisine" aria-label="lien vers cuisine">Cuisine</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-5" href="index.php?action=showAllVoyageNews" title="Voyage" aria-label="lien vers voyage">Voyage</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-5" href="index.php?action=showAllCultureNews" title="Culture" aria-label="lien vers culture">Culture</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-5" href="index.php?action=showAllCinemaNews" title="Cinéma" aria-label="lien vers cinéma">Cinema</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+{% endblock %}

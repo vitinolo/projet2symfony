@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 d-flex justify-content-center p-3 m-3" style="border:1px solid grey;box-shadow:1px 2px 2px;background-color:rgb(237, 234, 234)">
+        
+        {{ form_start(registrationForm) }}
+        <div class="form_row" >
+            <h1 class="d-flex justify-content-center">Register</h1>
+            <div class="errorsRegistrationForm">
+                {{ form_errors(registrationForm) }}
+            </div>
+            <div class="col-md-4 d-flex justify-content-center">{{ form_row(registrationForm.email) }}</div>
+            <div class="col-md-4 d-flex justify-content-center">{{ form_row(registrationForm.firstname) }}</div>
+            <div class="col-md-4 d-flex justify-content-center">{{ form_row(registrationForm.lastname) }}</div>
+            <div class="col-md-4 d-flex justify-content-center">{{ form_row(registrationForm.address) }}</div>
+            <div class="col-md-4 d-flex justify-content-center">{{ form_row(registrationForm.city) }}</div>
+            <div class="col-md-4 d-flex justify-content-center">{{ form_row(registrationForm.zipcode) }}</div>
+            <div class="col-md-4 d-flex justify-content-center">{{ form_row(registrationForm.gender) }}</div>
+            <div class="col-md-4 d-flex justify-content-center">{{ form_row(registrationForm.pseudo) }}</div>
+            <div class="col-md-4 d-flex justify-content-center">{{ form_row(registrationForm.avatar) }}</div>
+            <div class="col-md-4 d-flex justify-content-center">{{ form_row(registrationForm.plainPassword, { label: 'Password' }) }}</div>
+            <div class="col-md-4 ">{{ form_row(registrationForm.agreeTerms) }}</div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+        {{ form_end(registrationForm) }}</div>
+    <div class="col-md-4"></div>  
+</div>
+{% endblock %}
